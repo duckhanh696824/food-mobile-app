@@ -1,22 +1,22 @@
-import 'package:agriplant/pages/order_success_page.dart';
+import 'package:agriplant/screens/order_success_screen.dart';
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 
-class PaymentInforPage extends StatefulWidget {
+class PaymentInforScreen extends StatefulWidget {
   final List<Product> selectedItems;
   final List<int> itemQuantities;
 
-  const PaymentInforPage({
+  const PaymentInforScreen({
     super.key,
     required this.selectedItems,
     required this.itemQuantities,
   });
 
   @override
-  State<PaymentInforPage> createState() => _PaymentInforPageState();
+  State<PaymentInforScreen> createState() => _PaymentInforScreenState();
 }
 
-class _PaymentInforPageState extends State<PaymentInforPage> {
+class _PaymentInforScreenState extends State<PaymentInforScreen> {
   String shippingMethod = "Standard"; // Default shipping method
 
   @override
@@ -245,7 +245,7 @@ class _PaymentInforPageState extends State<PaymentInforPage> {
                   // Handle payment
                   showModalBottomSheet(
                     context: context,
-                    builder: (context) => OrderSuccessPage(),
+                    builder: (context) => OrderSuccessScreen(),
                   );
                 },
                 icon: const Icon(Icons.payment),

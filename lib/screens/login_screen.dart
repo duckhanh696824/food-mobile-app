@@ -1,12 +1,12 @@
 import 'package:agriplant/data/login.dart';
 import 'package:agriplant/models/login.dart';
-import 'package:agriplant/pages/home_page.dart';
-import 'package:agriplant/pages/register_page.dart';
+import 'package:agriplant/screens/home_screen.dart';
+import 'package:agriplant/screens/register_screen.dart';
 import 'package:agriplant/widgets/background_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class LoginPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const RegisterPage()),
+                            builder: (context) => const RegisterScreen()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -151,7 +151,7 @@ class LoginPage extends StatelessWidget {
                         // Nếu thông tin hợp lệ, chuyển đến HomePage
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                              builder: (context) => const HomePage()),
+                              builder: (context) => const HomeScreen()),
                         );
                       } else {
                         // Hiển thị thông báo lỗi

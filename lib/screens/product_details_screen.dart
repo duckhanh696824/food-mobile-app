@@ -1,21 +1,21 @@
 import 'package:agriplant/data/products.dart';
-import 'package:agriplant/pages/drawer_addtocart_page.dart';
+import 'package:agriplant/screens/drawer_addtocart_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../models/product.dart';
 
-class ProductDetailsPage extends StatefulWidget {
-  const ProductDetailsPage({super.key, required this.product});
+class ProductDetailsScreen extends StatefulWidget {
+  const ProductDetailsScreen({super.key, required this.product});
 
   final Product product;
 
   @override
-  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
-class _ProductDetailsPageState extends State<ProductDetailsPage> {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late TapGestureRecognizer readMoreGestureRecognizer;
   bool showMore = false;
 
@@ -199,7 +199,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
-                  builder: (context) => AddToCartPage(product: widget.product),
+                  builder: (context) => DrawerAddToCartScreen(product: widget.product),
                 );
               },
               icon: const Icon(IconlyLight.bag2),

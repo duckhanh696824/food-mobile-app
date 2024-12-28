@@ -4,8 +4,8 @@ import 'package:agriplant/data/orders.dart';
 import 'package:agriplant/widgets/order_item.dart';
 import 'package:flutter/material.dart';
 
-class OrdersPage extends StatelessWidget {
-  const OrdersPage({super.key});
+class OrdersScreen extends StatelessWidget {
+  const OrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

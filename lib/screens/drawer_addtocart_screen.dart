@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 
-class AddToCartPage extends StatefulWidget {
+class DrawerAddToCartScreen extends StatefulWidget {
   final Product product;
 
-  const AddToCartPage({super.key, required this.product});
+  const DrawerAddToCartScreen({super.key, required this.product});
 
   @override
-  State<AddToCartPage> createState() => _AddToCartPageState();
+  State<DrawerAddToCartScreen> createState() => _DrawerAddToCartScreenState();
 }
 
-class _AddToCartPageState extends State<AddToCartPage> {
+class _DrawerAddToCartScreenState extends State<DrawerAddToCartScreen> {
   int quantity = 1;
 
   void incrementQuantity() {

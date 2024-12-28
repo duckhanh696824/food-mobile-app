@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/order.dart';
 import '../models/product.dart';
-import '../pages/order_details_page.dart';
+import '../screens/order_details_screen.dart';
 
 class OrderProduct extends StatelessWidget {
   const OrderProduct({
@@ -22,7 +22,7 @@ class OrderProduct extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => OrderDetailsPage(order: order)),
+          MaterialPageRoute(builder: (_) => OrderDetailsScreen(order: order)),
         );
       },
       behavior: HitTestBehavior.opaque,

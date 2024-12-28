@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 import '../data/products.dart';
-import '../pages/payment_infor_page.dart';
+import 'payment_infor_screen.dart';
 import '../widgets/cart_item.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+class CartScreen extends StatefulWidget {
+  const CartScreen({super.key});
 
   @override
-  State<CartPage> createState() => _CartPageState();
+  State<CartScreen> createState() => _CartScreenState();
 }
 
-class _CartPageState extends State<CartPage> {
+class _CartScreenState extends State<CartScreen> {
   final cartItems = products.take(4).toList();
   final itemQuantities = List<int>.filled(4, 1);
   final selectedItems = <bool>[false, false, false, false];
@@ -110,7 +110,7 @@ class _CartPageState extends State<CartPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PaymentInforPage(
+                      builder: (context) => PaymentInforScreen(
                         selectedItems: selectedProducts,
                         itemQuantities: selectedQuantities,
                       ),

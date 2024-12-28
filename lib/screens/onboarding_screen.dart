@@ -1,11 +1,11 @@
-import 'package:agriplant/pages/home_page.dart';
-import 'package:agriplant/pages/login_page.dart';
+import 'package:agriplant/screens/home_screen.dart';
+import 'package:agriplant/screens/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class OnboardingPage extends StatelessWidget {
-  const OnboardingPage({super.key});
+class OnboardingScreen extends StatelessWidget {
+  const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class OnboardingPage extends StatelessWidget {
               FilledButton.tonalIcon(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(CupertinoPageRoute(
-                      builder: (context) => const LoginPage()));
+                      builder: (context) => const LoginScreen()));
                 },
                 icon: const Icon(IconlyLight.login),
                 label: const Text("Ấn để tiếp tục"),

@@ -5,8 +5,8 @@ import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class OrderDetailsPage extends StatelessWidget {
-  const OrderDetailsPage({
+class OrderDetailsScreen extends StatelessWidget {
+  const OrderDetailsScreen({
     Key? key,
     required this.order,
   }) : super(key: key);

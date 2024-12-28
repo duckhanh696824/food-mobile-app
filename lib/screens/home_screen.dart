@@ -1,20 +1,20 @@
-import 'package:agriplant/pages/cart_page.dart';
-import 'package:agriplant/pages/explore_page.dart';
-import 'package:agriplant/pages/profile_page.dart';
-import 'package:agriplant/pages/services_page.dart';
+import 'package:agriplant/screens/cart_screen.dart';
+import 'package:agriplant/screens/explore_screen.dart';
+import 'package:agriplant/screens/profile_screen.dart';
+import 'package:agriplant/screens/services_screen.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final pages = [const ExplorePage(), const ServicesPage(), const CartPage(), const ProfilePage()];
+class _HomeScreenState extends State<HomeScreen> {
+  final pages = [const ExploreScreen(), const ServicesScreen(), const CartScreen(), const ProfileScreen()];
   int currentPageIndex = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OrderSuccessPage extends StatelessWidget {
-  const OrderSuccessPage({super.key});
+class OrderSuccessScreen extends StatelessWidget {
+  const OrderSuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

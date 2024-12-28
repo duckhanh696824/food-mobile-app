@@ -1,11 +1,11 @@
 import 'package:agriplant/data/login.dart';
 import 'package:agriplant/models/login.dart';
-import 'package:agriplant/pages/home_page.dart';
+import 'package:agriplant/screens/home_screen.dart';
 import 'package:agriplant/widgets/background_auth.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

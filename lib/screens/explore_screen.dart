@@ -3,8 +3,8 @@ import 'package:agriplant/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class ExplorePage extends StatelessWidget {
-  const ExplorePage({super.key});
+class ExploreScreen extends StatelessWidget {
+  const ExploreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

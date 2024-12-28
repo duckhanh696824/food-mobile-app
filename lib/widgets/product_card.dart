@@ -2,7 +2,7 @@ import 'package:agriplant/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-import '../pages/product_details_page.dart';
+import '../screens/product_details_screen.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product});
@@ -15,7 +15,7 @@ class ProductCard extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-              builder: (_) => ProductDetailsPage(product: product)),
+              builder: (_) => ProductDetailsScreen(product: product)),
         );
       },
       child: Card(

@@ -1,9 +1,9 @@
-import 'package:agriplant/pages/orders_page.dart';
+import 'package:agriplant/screens/orders_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class ProfilePage extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const OrdersPage(),
+                    builder: (context) => const OrdersScreen(),
                   ));
             },
           ),
