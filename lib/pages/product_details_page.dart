@@ -1,4 +1,5 @@
 import 'package:agriplant/data/products.dart';
+import 'package:agriplant/pages/drawer_addtocart_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -195,7 +196,12 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
           ),
           const SizedBox(height: 20),
           FilledButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => AddToCartPage(product: widget.product),
+                );
+              },
               icon: const Icon(IconlyLight.bag2),
               label: const Text("Add to cart"))
         ],

@@ -1,14 +1,19 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:agriplant/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key, required this.cartItem});
+  const CartItem({
+    super.key,
+    required this.cartItem,
+    required this.quantity,
+    required this.onQuantityChanged,
+  });
 
   final Product cartItem;
+  final int quantity;
+  final void Function(int newQuantity) onQuantityChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -113,29 +118,26 @@ class CartItem extends StatelessWidget {
                                 minHeight: 30,
                                 minWidth: 30,
                               ),
-                              selectedColor:
-                                  Theme.of(context).colorScheme.primary,
-                              isSelected: const [
-                                true,
-                                false,
-                                true,
-                              ],
+                              isSelected: [false, true, false],
                               children: [
                                 const Icon(
                                   Icons.remove,
                                   size: 20,
                                 ),
-                                Text("${Random().nextInt(5) + 1}"),
+                                Text(quantity.toString(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium),
                                 const Icon(
                                   Icons.add,
                                   size: 20,
                                 ),
                               ],
                               onPressed: (int index) {
-                                if (index == 0) {
-                                  // decrease quantity
+                                if (index == 0 && quantity > 1) {
+                                  onQuantityChanged(quantity - 1);
                                 } else if (index == 2) {
-                                  // increase quantity
+                                  onQuantityChanged(quantity + 1);
                                 }
                               },
                             ),

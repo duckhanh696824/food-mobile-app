@@ -21,7 +21,7 @@ class OnboardingPage extends StatelessWidget {
                 child: Image.asset('assets/onboarding.png'),
               ),
               const Spacer(),
-              Text('Welcome to Agriplant',
+              Text('Cửa hàng thực phẩm NAKA',
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge
@@ -29,7 +29,7 @@ class OnboardingPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(top: 30, bottom: 30),
                 child: Text(
-                  "Get your agriculture products from the comfort of your home. You're just a few clicks away from your favorite products.",
+                  "Cung cấp các thực phẩm nông nghiệp sạch, an toàn và chất lượng từ các trang trại uy tín.",
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -40,7 +40,7 @@ class OnboardingPage extends StatelessWidget {
                       builder: (context) => const LoginPage()));
                 },
                 icon: const Icon(IconlyLight.login),
-                label: const Text("Continue with Google"),
+                label: const Text("Ấn để tiếp tục"),
               )
             ],
           ),

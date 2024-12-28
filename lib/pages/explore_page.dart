@@ -19,7 +19,7 @@ class ExplorePage extends StatelessWidget {
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: "Search here...",
+                      hintText: "Tìm sản phẩm...",
                       isDense: true,
                       contentPadding: const EdgeInsets.all(12.0),
                       border: const OutlineInputBorder(
@@ -66,15 +66,15 @@ class ExplorePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Free consultation",
+                              "Tư vấn miễn phí",
                               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                     color: Colors.green.shade700,
                                   ),
                             ),
-                            const Text("Get free support from our customer service"),
+                            const Text("Dịch vụ hỗ trợ chăm sóc khách hàng miễn phí"),
                             FilledButton(
                               onPressed: () {},
-                              child: const Text("Call now"),
+                              child: const Text("Liên hệ ngay"),
                             ),
                           ],
                         ),
