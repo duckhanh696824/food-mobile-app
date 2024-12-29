@@ -174,7 +174,7 @@ class _PaymentInforScreenState extends State<PaymentInforScreen> {
                 Icon(Icons.receipt_long, size: 24, color: Colors.deepOrange),
                 SizedBox(width: 8),
                 Text(
-                  "Summary",
+                  "Chi tiết thanh toán",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ],

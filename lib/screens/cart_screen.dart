@@ -101,7 +101,7 @@ class _CartScreenState extends State<CartScreen> {
                   if (selectedProducts.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text("Please select at least one item."),
+                        content: Text("Vui lòng chọn ít nhất 1 sản phẩm."),
                       ),
                     );
                     return;
@@ -117,7 +117,7 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   );
                 },
-                label: const Text("Proceed to Checkout"),
+                label: const Text("Tiến hành thanh toán"),
                 icon: const Icon(IconlyBold.arrowRight),
               ),
             ),

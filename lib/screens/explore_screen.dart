@@ -1,10 +1,38 @@
 import 'package:agriplant/data/products.dart';
+import 'package:agriplant/models/product.dart';
 import 'package:agriplant/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
-class ExploreScreen extends StatelessWidget {
+class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
+
+  @override
+  State<ExploreScreen> createState() => _ExploreScreenState();
+}
+
+class _ExploreScreenState extends State<ExploreScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  List<Product> displayedProducts = products;
+
+  void _filterProducts(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        displayedProducts = products;
+      } else {
+        displayedProducts = products
+            .where((product) =>
+                product.name.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +40,15 @@ class ExploreScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
+          // Search bar
           Padding(
             padding: const EdgeInsets.only(bottom: 15),
             child: Row(
               children: [
                 Expanded(
                   child: TextField(
+                    controller: _searchController,
+                    onChanged: _filterProducts,
                     decoration: InputDecoration(
                       hintText: "Tìm sản phẩm...",
                       isDense: true,
@@ -42,11 +73,13 @@ class ExploreScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 12),
-                  child: IconButton.filled(onPressed: () {}, icon: const Icon(IconlyLight.filter)),
+                  child: IconButton.filled(
+                      onPressed: () {}, icon: const Icon(IconlyLight.filter)),
                 ),
               ],
             ),
           ),
+          // Promotion section
           Padding(
             padding: const EdgeInsets.only(bottom: 25),
             child: SizedBox(
@@ -67,11 +100,15 @@ class ExploreScreen extends StatelessWidget {
                           children: [
                             Text(
                               "Tư vấn miễn phí",
-                              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
                                     color: Colors.green.shade700,
                                   ),
                             ),
-                            const Text("Dịch vụ hỗ trợ chăm sóc khách hàng miễn phí"),
+                            const Text(
+                                "Dịch vụ hỗ trợ chăm sóc khách hàng miễn phí"),
                             FilledButton(
                               onPressed: () {},
                               child: const Text("Liên hệ ngay"),
@@ -89,6 +126,7 @@ class ExploreScreen extends StatelessWidget {
               ),
             ),
           ),
+          // Featured products
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -102,8 +140,9 @@ class ExploreScreen extends StatelessWidget {
               ),
             ],
           ),
+          // Product grid
           GridView.builder(
-            itemCount: products.length,
+            itemCount: displayedProducts.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -113,9 +152,9 @@ class ExploreScreen extends StatelessWidget {
               mainAxisSpacing: 16,
             ),
             itemBuilder: (context, index) {
-              return ProductCard(product: products[index]);
+              return ProductCard(product: displayedProducts[index]);
             },
-          )
+          ),
         ],
       ),
     );
