@@ -36,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           ListTile(
-            title: const Text("My orders"),
+            title: const Text("Đơn hàng của tôi"),
             leading: const Icon(IconlyLight.bag),
             onTap: () {
               Navigator.push(
@@ -47,12 +47,12 @@ class ProfileScreen extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text("About us"),
+            title: const Text("Về chúng tôi"),
             leading: const Icon(IconlyLight.infoSquare),
             onTap: () {},
           ),
           ListTile(
-            title: const Text("Logout"),
+            title: const Text("Đăng xuất"),
             leading: const Icon(IconlyLight.logout),
             onTap: () {},
           ),

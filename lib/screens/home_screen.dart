@@ -2,6 +2,7 @@ import 'package:agriplant/screens/cart_screen.dart';
 import 'package:agriplant/screens/explore_screen.dart';
 import 'package:agriplant/screens/profile_screen.dart';
 import 'package:agriplant/screens/services_screen.dart';
+import 'package:agriplant/screens/sidebar_screen.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: const Drawer(),
+      drawer: const SidebarScreen(),
       appBar: AppBar(
         centerTitle: false,
         leading: IconButton.filledTonal(
@@ -82,22 +83,22 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.home),
-            label: "Home",
+            label: "Trang chủ",
             activeIcon: Icon(IconlyBold.home),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.call),
-            label: "Services",
+            label: "Dịch vụ",
             activeIcon: Icon(IconlyBold.call),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.buy),
-            label: "Cart",
+            label: "Giỏ hàng",
             activeIcon: Icon(IconlyBold.buy),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.profile),
-            label: "Profile",
+            label: "Hồ sơ",
             activeIcon: Icon(IconlyBold.profile),
           ),
         ],

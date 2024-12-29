@@ -73,7 +73,7 @@ class _CartScreenState extends State<CartScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Total (${selectedItems.where((e) => e).length} items)"),
+                Text("Tổng (${selectedItems.where((e) => e).length} món)"),
                 Text(
                   "\$$total",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
