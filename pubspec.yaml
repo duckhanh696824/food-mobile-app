@@ -14,6 +14,8 @@ dependencies:
   badges: ^3.1.1
   timelines: ^0.1.0
   easy_stepper: ^0.7.3
+  smooth_page_indicator: ^1.2.0+3
+
 
 
 dev_dependencies:
@@ -28,4 +30,9 @@ flutter:
     - assets/
     - assets/services/
     - assets/login/
+    - assets/banner/
+    - assets/banner/rau1.jpg
+    - assets/banner/rau2.png
+    - assets/banner/rau3.jpg
+    - assets/banner/rau4.jpg
     - shorebird.yaml
