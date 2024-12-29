@@ -14,7 +14,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final pages = [const ExploreScreen(), const ServicesScreen(), const CartScreen(), const ProfileScreen()];
+  final pages = [
+    const ExploreScreen(),
+    const ServicesScreen(),
+    const CartScreen(),
+    const ProfileScreen()
+  ];
   int currentPageIndex = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -38,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
               "Hi Khánh 👋🏾",
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            Text("Enjoy our services", style: Theme.of(context).textTheme.bodySmall)
+            Text("Chào mừng đến NAKA",
+                style: Theme.of(context).textTheme.bodySmall)
           ],
         ),
         actions: [

@@ -30,9 +30,4 @@ flutter:
     - assets/
     - assets/services/
     - assets/login/
-    - assets/banner/
-    - assets/banner/rau1.jpg
-    - assets/banner/rau2.png
-    - assets/banner/rau3.jpg
-    - assets/banner/rau4.jpg
     - shorebird.yaml
