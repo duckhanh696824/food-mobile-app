@@ -39,16 +39,16 @@ class ProductCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: SizedBox(
-                width: 30,
-                height: 30,
-                child: IconButton.filledTonal(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  iconSize: 18,
-                  icon: const Icon(IconlyLight.bookmark),
-                ),
-              ),
+              // child: SizedBox(
+              //   width: 30,
+              //   height: 30,
+              //   child: IconButton.filledTonal(
+              //     padding: EdgeInsets.zero,
+              //     onPressed: () {},
+              //     iconSize: 18,
+              //     icon: const Icon(IconlyLight.bookmark),
+              //   ),
+              // ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -84,7 +84,7 @@ class ProductCard extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           onPressed: () {},
                           iconSize: 18,
-                          icon: const Icon(Icons.add),
+                          icon: const Icon(Icons.shopping_cart),
                         ),
                       )
                     ],

@@ -125,9 +125,8 @@ class CartItem extends StatelessWidget {
                                   size: 20,
                                 ),
                                 Text(quantity.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium),
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium),
                                 const Icon(
                                   Icons.add,
                                   size: 20,

@@ -1,5 +1,6 @@
 import 'package:agriplant/models/product.dart';
 import 'package:agriplant/screens/banner_screen.dart';
+import 'package:agriplant/screens/filter_product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:agriplant/data/products.dart';
@@ -30,6 +31,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
               product.name.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
+  }
+
+  void _openFilterDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => FilterProductScreen(
+        onApplyFilter: (selectedPriceOption) {
+          if (selectedPriceOption != null) {
+            setState(() {
+              filteredProducts.sort((a, b) => selectedPriceOption == "asc"
+                  ? a.price.compareTo(b.price)
+                  : b.price.compareTo(a.price));
+            });
+          }
+        },
+      ),
+    );
   }
 
   @override
@@ -70,9 +88,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 12),
                   child: IconButton.filled(
-                    onPressed: () {
-                      // Chức năng filter nâng cao (có thể thêm sau)
-                    },
+                    onPressed: _openFilterDialog,
                     icon: const Icon(IconlyLight.filter),
                   ),
                 ),
@@ -95,7 +111,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 onPressed: () {
                   // Xử lý khi nhấn "See all"
                 },
-                child: const Text("See all"),
+                child: const Text("Xem thêm"),
               ),
             ],
           ),

@@ -87,9 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
             activeIcon: Icon(IconlyBold.home),
           ),
           BottomNavigationBarItem(
-            icon: Icon(IconlyLight.call),
-            label: "Dịch vụ",
-            activeIcon: Icon(IconlyBold.call),
+            icon: Icon(IconlyLight.category),
+            label: "Sản phẩm",
+            activeIcon: Icon(IconlyBold.category),
           ),
           BottomNavigationBarItem(
             icon: Icon(IconlyLight.buy),
