@@ -1,7 +1,6 @@
-import 'package:agriplant/models/product.dart';
+import 'package:agriplant/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-
 import '../screens/product_details_screen.dart';
 
 class ProductCard extends StatelessWidget {
@@ -28,6 +27,7 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Image section
             Container(
               height: 120,
               alignment: Alignment.topRight,
@@ -35,48 +35,47 @@ class ProductCard extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(product.image),
+                  image: NetworkImage(product.thumbnailUrl ?? ''),
                   fit: BoxFit.cover,
                 ),
               ),
-              // child: SizedBox(
-              //   width: 30,
-              //   height: 30,
-              //   child: IconButton.filledTonal(
-              //     padding: EdgeInsets.zero,
-              //     onPressed: () {},
-              //     iconSize: 18,
-              //     icon: const Icon(IconlyLight.bookmark),
-              //   ),
-              // ),
             ),
+            // Product details section
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Product name
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: Text(
-                      product.name,
+                      product.name ?? 'Unknown Product',
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
+                  // Price and action buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      // Price information
                       RichText(
                         text: TextSpan(
                           children: [
                             TextSpan(
-                                text: "\$${product.price}",
-                                style: Theme.of(context).textTheme.bodyLarge),
+                              text:
+                                  "${product.attributes.isNotEmpty ? product.attributes[0].totalPrice : 0}",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
                             TextSpan(
-                                text: "/${product.unit}",
-                                style: Theme.of(context).textTheme.bodySmall),
+                              text:
+                                  "/${product.attributes.isNotEmpty ? product.attributes[0].unitOfMeasurement : ''}",
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
                           ],
                         ),
                       ),
+                      // Add to cart button
                       SizedBox(
                         width: 30,
                         height: 30,
@@ -86,12 +85,12 @@ class ProductCard extends StatelessWidget {
                           iconSize: 18,
                           icon: const Icon(Icons.shopping_cart),
                         ),
-                      )
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

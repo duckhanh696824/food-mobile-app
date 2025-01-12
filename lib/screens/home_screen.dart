@@ -16,9 +16,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final pages = [
-    const ExploreScreen(),
+    ExploreScreen(),
     const ServicesScreen(),
-    const CartScreen(),
+    CartScreen(),
     const ProfileScreen()
   ];
   int currentPageIndex = 0;

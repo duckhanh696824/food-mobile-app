@@ -14,4 +14,6 @@ class Product {
     required this.unit,
     required this.rating,
   });
+
+  get thumbnailUrl => null;
 }

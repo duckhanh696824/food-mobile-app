@@ -1,9 +1,10 @@
+import 'package:agriplant/controller/auth_controller.dart';
 import 'package:agriplant/data/login.dart';
-import 'package:agriplant/models/login.dart';
 import 'package:agriplant/screens/home_screen.dart';
 import 'package:agriplant/screens/register_screen.dart';
 import 'package:agriplant/widgets/background_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -11,6 +12,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final AuthController authController = Get.put(AuthController());
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
@@ -114,83 +116,38 @@ class LoginScreen extends StatelessWidget {
 
                   const SizedBox(width: 10), // Khoảng cách giữa hai nút
 
-                  ElevatedButton(
-                    onPressed: () {
-                      final String email = emailController.text.trim();
-                      final String password = passwordController.text.trim();
-
-                      // Kiểm tra nếu thông tin bị bỏ trống
-                      if (email.isEmpty || password.isEmpty) {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text("Thông báo"),
-                            content:
-                                const Text("Vui lòng nhập email và mật khẩu."),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                child: const Text("OK"),
+                  Obx(() {
+                    return authController.isLoading.value
+                        ? const CircularProgressIndicator()
+                        : ElevatedButton(
+                            onPressed: () {
+                              authController.login(
+                                emailController.text.trim(),
+                                passwordController.text.trim(),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromRGBO(59, 105, 57, 1),
+                              fixedSize: const Size(109, 40),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(60.0),
+                                side: const BorderSide(
+                                    color: Colors.white, width: 1), // Viền
                               ),
-                            ],
-                          ),
-                        );
-                        return;
-                      }
-
-                      // Xác thực thông tin đăng nhập
-                      var user;
-                      try {
-                        user = loginData.firstWhere((user) =>
-                            user.email == email && user.password == password);
-                      } catch (e) {
-                        user = null;
-                      }
-
-                      if (user != null) {
-                        // Nếu thông tin hợp lệ, chuyển đến HomePage
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (context) => const HomeScreen()),
-                        );
-                      } else {
-                        // Hiển thị thông báo lỗi
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text("Đăng nhập thất bại"),
-                            content: const Text(
-                                "Email hoặc mật khẩu không đúng. Vui lòng thử lại."),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                child: const Text("OK"),
+                            ),
+                            child: const Text(
+                              "Đăng nhập",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
                               ),
-                            ],
-                          ),
-                        );
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(59, 105, 57, 1),
-                      fixedSize: const Size(109, 40),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(60.0),
-                        side: const BorderSide(
-                            color: Colors.white, width: 1), // Viền
-                      ),
-                    ),
-                    child: const Text(
-                      "Đăng nhập",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                            ),
+                          );
+                  })
                 ],
               ),
             ),

@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:agriplant/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:agriplant/models/product_model.dart'; // Đảm bảo đã import đúng model của bạn
 
 class CartItem extends StatelessWidget {
   const CartItem({
@@ -11,7 +11,7 @@ class CartItem extends StatelessWidget {
     required this.onQuantityChanged,
   });
 
-  final Product cartItem;
+  final Product cartItem; // Chắc chắn rằng cartItem phải là đối tượng Product
   final int quantity;
   final void Function(int newQuantity) onQuantityChanged;
 
@@ -80,7 +80,7 @@ class CartItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(cartItem.image),
+                      image: NetworkImage(cartItem.thumbnailUrl ?? ''), // Cập nhật ảnh từ API
                     ),
                   ),
                 ),
@@ -88,11 +88,11 @@ class CartItem extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(cartItem.name,
+                      Text(cartItem.name ?? 'Sản phẩm không tên',
                           style: Theme.of(context).textTheme.titleMedium),
                       const SizedBox(height: 2),
                       Text(
-                        cartItem.description,
+                        cartItem.description ?? 'Không có mô tả',
                         style: Theme.of(context).textTheme.bodySmall,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,

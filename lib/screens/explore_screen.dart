@@ -1,49 +1,23 @@
-import 'package:agriplant/models/product.dart';
+import 'package:agriplant/controller/product_controller.dart';
 import 'package:agriplant/screens/banner_screen.dart';
 import 'package:agriplant/screens/filter_product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:agriplant/data/products.dart';
+import 'package:get/get.dart';
 import 'package:agriplant/widgets/product_card.dart';
 
-class ExploreScreen extends StatefulWidget {
-  const ExploreScreen({super.key});
+class ExploreScreen extends StatelessWidget {
+  final ProductController productController = Get.put(ProductController(Get.find()));
 
-  @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
-}
+  ExploreScreen({super.key});
 
-class _ExploreScreenState extends State<ExploreScreen> {
-  String searchQuery = "";
-  List<Product> filteredProducts = [];
-
-  @override
-  void initState() {
-    super.initState();
-    filteredProducts = products; // Ban đầu hiển thị tất cả sản phẩm
-  }
-
-  void _filterProducts(String query) {
-    setState(() {
-      searchQuery = query;
-      filteredProducts = products
-          .where((product) =>
-              product.name.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    });
-  }
-
-  void _openFilterDialog() {
+  void _openFilterDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => FilterProductScreen(
         onApplyFilter: (selectedPriceOption) {
           if (selectedPriceOption != null) {
-            setState(() {
-              filteredProducts.sort((a, b) => selectedPriceOption == "asc"
-                  ? a.price.compareTo(b.price)
-                  : b.price.compareTo(a.price));
-            });
+            productController.sortProducts(selectedPriceOption);
           }
         },
       ),
@@ -62,7 +36,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               children: [
                 Expanded(
                   child: TextField(
-                    onChanged: _filterProducts,
+                    onChanged: productController.filterProducts,
                     decoration: InputDecoration(
                       hintText: "Tìm sản phẩm...",
                       isDense: true,
@@ -88,7 +62,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 12),
                   child: IconButton.filled(
-                    onPressed: _openFilterDialog,
+                    onPressed: () => _openFilterDialog(context),
                     icon: const Icon(IconlyLight.filter),
                   ),
                 ),
@@ -108,27 +82,28 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               TextButton(
-                onPressed: () {
-                  // Xử lý khi nhấn "See all"
-                },
+                onPressed: () {},
                 child: const Text("Xem thêm"),
               ),
             ],
           ),
           // Hiển thị danh sách sản phẩm
-          GridView.builder(
-            itemCount: filteredProducts.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.9,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
+          Obx(
+            () => GridView.builder(
+              itemCount: productController.filteredProducts.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.9,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemBuilder: (context, index) {
+                return ProductCard(
+                    product: productController.filteredProducts[index]);
+              },
             ),
-            itemBuilder: (context, index) {
-              return ProductCard(product: filteredProducts[index]);
-            },
           ),
         ],
       ),
