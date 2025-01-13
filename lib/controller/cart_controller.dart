@@ -33,6 +33,13 @@ class CartController extends GetxController {
       backgroundColor: Colors.green,
       colorText: Colors.white,
     );
+    await loadCart();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    loadCart();
   }
 
   Future<void> loadCart() async {

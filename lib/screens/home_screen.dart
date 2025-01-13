@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: const SidebarScreen(),
+      drawer: SidebarScreen(),
       appBar: AppBar(
         centerTitle: false,
         leading: IconButton.filledTonal(
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hi Khánh 👋🏾",
+              "Hi Hoang Nam 👋🏾",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Text("Chào mừng đến NAKA",

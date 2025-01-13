@@ -2,10 +2,13 @@
 
 import 'package:agriplant/controller/auth_controller.dart';
 import 'package:agriplant/controller/cart_controller.dart';
+import 'package:agriplant/controller/order_controller.dart';
+import 'package:agriplant/controller/user_controller.dart';
 import 'package:agriplant/screens/cart_screen.dart';
 import 'package:agriplant/screens/home_screen.dart';
 import 'package:agriplant/screens/login_screen.dart';
 import 'package:agriplant/screens/onboarding_screen.dart';
+import 'package:agriplant/screens/orders_screen.dart';
 import 'package:agriplant/screens/register_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -16,7 +19,9 @@ import 'package:agriplant/services/product_service.dart';
 void main() {
   Get.put(ProductService());
   Get.put(AuthController());
+  Get.put(UserController());
   Get.put(CartController());
+  Get.put(OrderController());
   runApp(const MainApp());
 }
 
@@ -32,16 +37,18 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.nunitoTextTheme(),
       ),
-      initialBinding: BindingsBuilder(() {
-        Get.put(CartController());
-      }),
+      // initialBinding: BindingsBuilder(() {
+      //   Get.put(CartController());
+      // }),
       home: const OnboardingScreen(),
       getPages: [
-        GetPage(name: '/home', page: () => HomeScreen()),
+        GetPage(name: '/home', page: () => OnboardingScreen()),
+        GetPage(name: '/main', page: () => HomeScreen()),
         GetPage(name: '/onboarding', page: () => OnboardingScreen()),
         GetPage(name: '/login', page: () => LoginScreen()),
         GetPage(name: '/register', page: () => RegisterScreen()),
         GetPage(name: '/cart', page: () => CartScreen()),
+        GetPage(name: '/orders', page: () => OrdersScreen()),
       ],
     );
   }

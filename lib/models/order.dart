@@ -9,4 +9,12 @@ class Order {
     required this.products,
     required this.date,
   });
+
+  get paymentMethod => null;
+
+  get status => null;
+
+  get orderDate => null;
+
+  get address => null;
 }

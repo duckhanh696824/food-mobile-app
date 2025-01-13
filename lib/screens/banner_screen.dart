@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class BannerScreen extends StatefulWidget {
   const BannerScreen({super.key});
@@ -65,29 +66,16 @@ class _BannerScreenState extends State<BannerScreen> {
               });
             },
             itemBuilder: (context, index) {
-              return Image.network(
-                bannerImages[index],
+              return CachedNetworkImage(
+                imageUrl: bannerImages[index],
                 fit: BoxFit.cover,
                 width: double.infinity,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              (loadingProgress.expectedTotalBytes ?? 1)
-                          : null,
-                    ),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return Center(
-                    child: Text(
-                      'Unable to load image',
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  );
-                },
+                errorWidget: (context, url, error) => Center(
+                  child: Text(
+                    'Unable to load image',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
               );
             },
           ),

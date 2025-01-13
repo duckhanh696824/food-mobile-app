@@ -1,4 +1,4 @@
-import 'package:agriplant/models/order.dart';
+import 'package:agriplant/models/order_model.dart';
 import 'package:agriplant/utils/extensions/date.dart';
 import 'package:agriplant/widgets/order_item.dart';
 import 'package:easy_stepper/easy_stepper.dart';
@@ -16,11 +16,11 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final orderTimelines = ['Processing', 'Picking', 'Shipping', 'Delivered'];
+    final orderTimelines = ["Đã đặt", "Đang đóng gói", "Đang giao", "Chờ đánh giá"];
     int activeStep = 2;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Order Details"),
+        title: const Text("Chi tiết đơn hàng"),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -100,7 +100,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     children: [
                       const Text("Delivery estimate"),
                       Text(
-                        order.date.deliveryDate,
+                        "$order.createdAt",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -153,7 +153,7 @@ class OrderDetailsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          OrderItem(order: order, visibleProducts: 1),
+          OrderItem(order: order),
         ],
       ),
     );

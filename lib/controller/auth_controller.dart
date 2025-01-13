@@ -13,8 +13,8 @@ class AuthController extends GetxController {
       final userData = User.fromJson(response['data']);
       user.value = userData;
 
-      // Chuyển tới HomePage sau khi đăng nhập thành công
-      Get.offAllNamed('/home');
+      // Chuyển tới Home sau khi đăng nhập thành công
+      Get.offAllNamed('/main');
     } catch (e) {
       Get.snackbar('Error', e.toString());
     } finally {
@@ -22,5 +22,6 @@ class AuthController extends GetxController {
     }
   }
 
-  String? get accessToken => user.value?.accessToken; //Truy xuất access_token từ nơi khác
+  String? get accessToken =>
+      user.value?.accessToken; //Truy xuất access_token từ nơi khác
 }

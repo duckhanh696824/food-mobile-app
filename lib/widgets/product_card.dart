@@ -1,4 +1,5 @@
 import 'package:agriplant/models/product_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../screens/product_details_screen.dart';
@@ -35,7 +36,9 @@ class ProductCard extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(product.thumbnailUrl ?? ''),
+                  image: CachedNetworkImageProvider(
+                    product.thumbnailUrl ?? '',
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),

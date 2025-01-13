@@ -19,4 +19,21 @@ class UserService {
       throw Exception('Đăng nhập thất bại: ${response.body}');
     }
   }
+
+  // Get Profile
+  static Future<Map<String, dynamic>> fetchUserProfile(String token) async {
+    final url = Uri.parse('${ApiConstants.baseUrl}/${ApiConstants.userProfileEndpoint}'); // Đổi thành URL API của bạn
+    final headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.get(url, headers: headers);
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to fetch user profile');
+    }
+  }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:get/get.dart';
+import '../controller/user_controller.dart';
 
 class SidebarScreen extends StatelessWidget {
-  const SidebarScreen({super.key});
+  SidebarScreen({super.key});
+
+  final userController = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -10,40 +14,68 @@ class SidebarScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // User info section
-          UserAccountsDrawerHeader(
-            decoration: BoxDecoration(color: Colors.green.shade700),
-            currentAccountPicture: CircleAvatar(
-              radius: 62,
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              child: const CircleAvatar(
-                radius: 60,
-                foregroundImage: NetworkImage(
-                    'https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3386&q=80'),
+          // Sử dụng Obx để lắng nghe sự thay đổi của user
+          Obx(() {
+            final user = userController.user.value;
+
+            // Kiểm tra user có null hay không
+            if (user == null) {
+              return UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: Colors.green.shade700),
+                currentAccountPicture: CircleAvatar(
+                  radius: 62,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  child: const Icon(Icons.person, size: 60),
+                ),
+                accountName: const Text(
+                  "Unknown",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                accountEmail: const Text(
+                  "unknown@gmail.com",
+                  style: TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                ),
+              );
+            }
+
+            // Nếu user không null, hiển thị thông tin
+            return UserAccountsDrawerHeader(
+              decoration: BoxDecoration(color: Colors.green.shade700),
+              currentAccountPicture: CircleAvatar(
+                radius: 62,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                child: user.avatar != null && user.avatar!.isNotEmpty
+                    ? CircleAvatar(
+                        radius: 60,
+                        foregroundImage: NetworkImage(user.avatar!),
+                      )
+                    : CircleAvatar(
+                        radius: 60,
+                        backgroundColor: Colors.white,
+                        child: Text(
+                          user.fullName!.isNotEmpty
+                              ? user.fullName![0].toUpperCase()
+                              : '?',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
               ),
-            ),
-            accountName: Padding(
-              padding: const EdgeInsets.only(
-                  top: 14.0), // Khoảng cách giữa ảnh và tên
-              child: Text(
-                "Đức Khánh",
+              accountName: Text(
+                user.fullName!,
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-            accountEmail: Padding(
-              padding: const EdgeInsets.only(
-                  top: 0.5), // Khoảng cách ngắn hơn giữa tên và email
-              child: Text(
-                "123@gmail.com",
+              accountEmail: Text(
+                user.email!,
                 style:
                     const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
               ),
-            ),
-          ),
-
-          // Divider
-          //const Divider(),
+            );
+          }),
 
           // Menu items
           ListTile(
@@ -57,7 +89,7 @@ class SidebarScreen extends StatelessWidget {
             leading: const Icon(IconlyLight.timeCircle),
             title: const Text("Lịch sử đặt"),
             onTap: () {
-              // Handle navigation
+              Get.toNamed('/orders');
             },
           ),
           ListTile(
@@ -68,7 +100,6 @@ class SidebarScreen extends StatelessWidget {
             },
           ),
 
-          // Divider
           const Divider(),
 
           // Logout section
@@ -76,7 +107,8 @@ class SidebarScreen extends StatelessWidget {
             leading: const Icon(IconlyLight.logout),
             title: const Text("Đăng xuất"),
             onTap: () {
-              // Handle logout
+              userController.user.value = null; // Reset user
+              Get.offAllNamed('/login'); // Quay lại trang đăng nhập
             },
           ),
         ],

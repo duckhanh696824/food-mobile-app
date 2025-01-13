@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../models/order.dart';
-import '../models/product.dart';
+import '../models/order_model.dart';
+import '../models/product_model.dart';
 import '../screens/order_details_screen.dart';
 
 class OrderProduct extends StatelessWidget {
@@ -37,7 +37,7 @@ class OrderProduct extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(product.image),
+                image: NetworkImage(product.thumbnailUrl ?? ''),
               ),
             ),
           ),
@@ -46,12 +46,12 @@ class OrderProduct extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name,
+                  product.name ?? 'Chưa có tên',
                   style: theme.textTheme.titleMedium
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  product.description,
+                  product.description ?? 'Chưa mô tả',
                   style: Theme.of(context).textTheme.bodySmall,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -61,7 +61,7 @@ class OrderProduct extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "\$${product.price}",
+                      "\${product.price} VND",
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                             fontWeight: FontWeight.bold,
